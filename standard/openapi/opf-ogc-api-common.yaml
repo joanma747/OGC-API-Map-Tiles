@@ -576,27 +576,6 @@ components:
             - Polygon
             - MultiPolygon
             - GeometryCollection
-    tilingSchemesArray:
-      required:
-        - type
-      type: object
-      properties:
-        identifier:
-          type: string
-          example: default
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
-    tilingSchemes:
-      required:
-        - type
-      type: object
-      properties:
-        tilingSchemes:
-          type: array
-          items:
-            $ref: '#/components/schemas/tilingSchemesArray'
     boundingBox:
       required:
         - type
