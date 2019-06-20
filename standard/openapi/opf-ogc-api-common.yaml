@@ -673,6 +673,10 @@ components:
           example:
             - -20037508.3427892
             - 20037508.3427892
+    tileMatrixSets:
+      type: array
+      items:
+        $ref: '#/components/schemas/tileMatrixSet'
     tileMatrixSet:
       required:
         - identifier
