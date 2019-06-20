@@ -686,7 +686,7 @@ components:
           example: 'http://www.opengis.net/def/wkss/OGC/1.0/GoogleMapsCompatible'
           enum:
             - 'http://www.opengis.net/def/wkss/OGC/1.0/GoogleMapsCompatible'
-        TileMatrix:
+        tileMatrix:
           type: array
           nullable: true
           items:
