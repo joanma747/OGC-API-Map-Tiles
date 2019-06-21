@@ -936,7 +936,7 @@ components:
         type: array
         items:
           type: string
-    collections:
+    infoCollections:
       name: infoCollections
       in: query
       description: |-
