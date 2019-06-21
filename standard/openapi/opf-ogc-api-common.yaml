@@ -936,6 +936,18 @@ components:
         type: array
         items:
           type: string
+    collections:
+      name: infoCollections
+      in: query
+      description: |-
+        The collections that are used in a response of a information request. The parameter value is a comma-separated list of collection identifiers.
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
     properties:
       name: properties
       in: query
