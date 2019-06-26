@@ -619,44 +619,46 @@ components:
             - 20037508.3427892
             - 20037508.3427892
     tileMatrix:
-      required:
-        - type
       type: object
       nullable: true
+      required: 
+        - type
+        - identifier
+        - scaleDenominator
+        - topLeftCorner
+        - tileWidth
+        - tileHeight
+        - matrixWidth
+        - matrixHeight
       properties:
         type:
+          description: Type of the Tile Matrix
           type: string
           enum:
             - TileMatrix
-        identifier:
+        title:
+          description: Title of this tile matrix set, normally used for display to a human
           type: string
           nullable: true
+          example: Google Maps Compatible for the World
+        abstract:
+          description: Brief narrative description of this tile matrix, normally available for display to a human
+          type: string
+        keywords:
+          description: Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset
+          type: array
+          items:
+            type: string
+        identifier:
+          description: Tile matrix identifier,
+          type: string
           example: '0'
-        MatrixHeight:
-          minimum: 0
-          type: integer
-          nullable: true
-          example: 1
-        MatrixWidth:
-          minimum: 0
-          type: integer
-          nullable: true
-          example: 1
-        TileHeight:
-          minimum: 0
-          type: integer
-          nullable: true
-          example: 256
-        TileWidth:
-          minimum: 0
-          type: integer
-          nullable: true
-          example: 256
         scaleDenominator:
+          description: Scale denominator level of this tile matrix
           type: number
-          nullable: true
           example: 559082264.028717
         topLeftCorner:
+          description: Position in CRS coordinates of the top-left corner of this tile matrix
           type: array
           nullable: true
           items: 
@@ -664,6 +666,28 @@ components:
           example:
             - -20037508.3427892
             - 20037508.3427892
+        tileWidth:
+          description: Width of each tile of this tile matrix in pixels
+          type: number
+          minimum: 1
+          multipleOf: 1
+          example: 256
+        tileHeight:
+          description: Height of each tile of this tile matrix in pixels
+          type: number
+          minimum: 1
+          multipleOf: 1
+          example: 256
+        matrixHeight:
+          description: Width of the matrix (number of tiles in width)
+          type: number
+          minimum: 1
+          example: 3
+        matrixWidth:
+          description: Height of the matrix (number of tiles in height)
+          type: number
+          minimum: 1
+          example: 4
     tileMatrixSets:
       type: array
       items:
@@ -681,46 +705,45 @@ components:
           enum:
             - TileMatrixSet
         title:
-          description: |- 
-            Title of this tile matrix set, normally used for display to a human
+          description: Title of this tile matrix set, normally used for display to a human
           type: string
           nullable: true
           example: Google Maps Compatible for the World
         abstract:
-          description: hola
+          description: Brief narrative description of this tile matrix set, normally available for display to a human
           type: string
         keywords:
-          $ref: '#/components/schemas/keywords'
+          description: Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset
+          type: array
+          items:
+            type: string
         identifier:
+          description: Tile matrix set identifier,
           type: string
           example: default
-        supportedCrs:
-          type: string
-          nullable: true
-          example: 'http://www.opengis.net/def/crs/EPSG/0/3857'
-          enum:
-            - 'http://www.opengis.net/def/crs/EPSG/0/3857'
-        wellKnownScaleSet:
-          type: string
-          nullable: true
-          example: 'http://www.opengis.net/def/wkss/OGC/1.0/GoogleMapsCompatible'
-          enum:
-            - 'http://www.opengis.net/def/wkss/OGC/1.0/GoogleMapsCompatible'
-        tileMatrix:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/tileMatrix'
         boundingBox:
+          description: Minimum bounding rectangle surrounding the tile matrix set, in the supported CRS,
           type: array
           nullable: true
           items:
             $ref: '#/components/schemas/boundingBox'
-    keywords:
-      description: hola
-      type: array
-      items:
-        type: string
+        supportedCRS:
+          description: Reference to one coordinate reference system (CRS)
+          type: string
+          format: uri
+          nullable: true
+          example: 'http://www.opengis.net/def/crs/EPSG/0/3857'
+        wellKnownScaleSet:
+          description: Reference to a well-known scale set
+          type: string
+          nullable: true
+          example: 'http://www.opengis.net/def/wkss/OGC/1.0/GoogleMapsCompatible'
+        tileMatrix:
+          description: Describes a scale level and its tile matrix
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/tileMatrix'
     mapbox-vector-tile:
       type: string
       format: binary
