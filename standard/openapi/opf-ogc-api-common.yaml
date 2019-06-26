@@ -676,16 +676,24 @@ components:
       nullable: true
       properties:
         type:
+          description: Type of the Tile Matrix Set
           type: string
           enum:
             - TileMatrixSet
-        identifier:
-          type: string
-          example: default
         title:
+          description: |- 
+            Title of this tile matrix set, normally used for display to a human
           type: string
           nullable: true
           example: Google Maps Compatible for the World
+        abstract:
+          description: hola
+          type: string
+        keywords:
+          $ref: '#/components/schemas/keywords'
+        identifier:
+          type: string
+          example: default
         supportedCrs:
           type: string
           nullable: true
@@ -708,6 +716,11 @@ components:
           nullable: true
           items:
             $ref: '#/components/schemas/boundingBox'
+    keywords:
+      description: hola
+      type: array
+      items:
+        type: string
     mapbox-vector-tile:
       type: string
       format: binary
