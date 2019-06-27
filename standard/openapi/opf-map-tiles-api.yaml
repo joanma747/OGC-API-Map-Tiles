@@ -1085,8 +1085,9 @@ paths:
         description: |-
           descriptions of the map an style in a SDL-SE encoding
         content:
-          application/se+json
-
+          application/se+json:
+            schema:
+              type: string
   '/map/{mapId}':
     get:
       tags:
