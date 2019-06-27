@@ -423,7 +423,7 @@ paths:
       operationId: getTileCollections
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
-        - $ref: '#/components/parameters/styles'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styles'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
@@ -509,7 +509,7 @@ paths:
       operationId: getMapTileOfCollectionId
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styleId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
@@ -553,15 +553,15 @@ paths:
       operationId: getFeatureInfoTileOfCollections
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
-        - $ref: '#/components/parameters/styles'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styles'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileCol'
-        - $ref: '#/components/parameters/coord_i'
-        - $ref: '#/components/parameters/coord_j'
-        - $ref: '#/components/parameters/infoTemplate'
-        - $ref: '#/components/parameters/tileFormat'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_i'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_j'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoTemplate'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileFormat'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'
         - $ref: '#/components/parameters/f-json-html'
       responses:
@@ -590,10 +590,10 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileCol'
-        - $ref: '#/components/parameters/coord_i'
-        - $ref: '#/components/parameters/coord_j'
-        - $ref: '#/components/parameters/infoTemplate'
-        - $ref: '#/components/parameters/tileFormat'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_i'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_j'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoTemplate'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileFormat'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'
         - $ref: '#/components/parameters/f-json-html'
       responses:
@@ -618,15 +618,15 @@ paths:
       operationId: getFeatureInfoMapTileOfCollectionId
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styleId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileCol'
-        - $ref: '#/components/parameters/coord_i'
-        - $ref: '#/components/parameters/coord_j'
-        - $ref: '#/components/parameters/infoTemplate'
-        - $ref: '#/components/parameters/tileFormat'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_i'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_j'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoTemplate'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileFormat'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'
         - $ref: '#/components/parameters/f-json-html'
       responses:
@@ -653,12 +653,12 @@ paths:
       operationId: getTilesCollections
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
-        - $ref: '#/components/parameters/styles'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styles'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
-        - $ref: '#/components/parameters/scaleDenominator'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/scaleDenominator'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
-        - $ref: '#/components/parameters/tileFormat'
-        - $ref: '#/components/parameters/embedded'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileFormat'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/embedded'
         - $ref: '#/components/parameters/f-json-zip'
       responses:
         '200':
@@ -685,12 +685,12 @@ paths:
       operationId: getTiles
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styleId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
-        - $ref: '#/components/parameters/scaleDenominator'        
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/scaleDenominator'        
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
-        - $ref: '#/components/parameters/tileFormat'
-        - $ref: '#/components/parameters/embedded'        
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileFormat'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/embedded'        
         - $ref: '#/components/parameters/f-json-zip'
       responses:
         '200':
@@ -719,16 +719,16 @@ paths:
       parameters:
         # Needs to add the collectionIds and bbox etc as query
         - $ref: '#/components/parameters/f-json'
-        - $ref: '#/components/parameters/map-crs'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
-        - $ref: '#/components/parameters/styles'
-        - $ref: '#/components/parameters/width'
-        - $ref: '#/components/parameters/height'
-        - $ref: '#/components/parameters/transparent'
-        - $ref: '#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styles'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'
-        - $ref: '#/components/parameters/elevation'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
       responses:
         '200':
           description: |- 
@@ -763,16 +763,16 @@ paths:
       operationId: getMapCollectionId
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styleId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
         - $ref: '#/components/parameters/f-json'
-        - $ref: '#/components/parameters/map-crs'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
-        - $ref: '#/components/parameters/width'
-        - $ref: '#/components/parameters/height'
-        - $ref: '#/components/parameters/transparent'
-        - $ref: '#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'      
-        - $ref: '#/components/parameters/elevation'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
       responses:
         '200':
           description: |- 
@@ -808,21 +808,21 @@ paths:
       operationId: getFeatureInfoCollections
       parameters:
         - $ref: '#/components/parameters/f-json-html'
-        - $ref: '#/components/parameters/map-crs'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoCollections'
-        - $ref: '#/components/parameters/styles'
-        - $ref: '#/components/parameters/width'
-        - $ref: '#/components/parameters/height'
-        - $ref: '#/components/parameters/transparent'
-        - $ref: '#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styles'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'      
-        - $ref: '#/components/parameters/elevation'
-        - $ref: '#/components/parameters/coord_i'
-        - $ref: '#/components/parameters/coord_j'
-        - $ref: '#/components/parameters/infoTemplate'
-        - $ref: '#/components/parameters/mapFormat'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_i'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_j'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoTemplate'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/mapFormat'
       responses:
         '200':
           description: |- 
@@ -846,20 +846,20 @@ paths:
       operationId: getFeatureInfoCollectionId
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styleId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
         - $ref: '#/components/parameters/f-json-html'
-        - $ref: '#/components/parameters/map-crs'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
-        - $ref: '#/components/parameters/width'
-        - $ref: '#/components/parameters/height'
-        - $ref: '#/components/parameters/transparent'
-        - $ref: '#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'      
-        - $ref: '#/components/parameters/elevation'
-        - $ref: '#/components/parameters/coord_i'
-        - $ref: '#/components/parameters/coord_j'
-        - $ref: '#/components/parameters/infoTemplate'
-        - $ref: '#/components/parameters/mapFormat'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_i'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_j'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoTemplate'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/mapFormat'
       responses:
         '200':
           description: |- 
