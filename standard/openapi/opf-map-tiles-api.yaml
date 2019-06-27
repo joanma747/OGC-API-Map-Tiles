@@ -41,21 +41,27 @@ info:
     name: OGC License
     url: 'https://raw.githubusercontent.com/opengeospatial/OGC-API-Map-Tiles/master/LICENSE'
 tags:
-  - name: Capabilities
+  - name: OGC API Common
     description: |-
-      essential characteristics of this API
+      Common characteristics of this API
+  - name: TileMatrixSet
+    description: |-
+      TileMatrixSet used in this API
   - name: OGC API Features
     description: |-
       access to data (features)
   - name: OGC API Coverages
     description: |-
       access to data (coverages)
-  - name: Tiles with one layer
-    description: |-
-      access to data representations, partitioned into a hierarchy of tiles (renderizations or vector tiles) of layer
   - name: Maps with one layer
     description: |-
       access to map renderizations of a layer.
+  - name: Tiles with one layer
+    description: |-
+      Data partitioned into a hierarchy of tiles of a layer
+  - name: Map Tiles with one layer
+    description: |-
+      map (renderizations or vector tiles) partitioned into a hierarchy of tiles  of a layer  
   - name: Complex Maps
     description: |-
       access to map renderizations of more that one layer.
@@ -72,7 +78,7 @@ paths:
   '/':
     get:
       tags:
-        - Capabilities
+        - OGC API Common
       summary: landing page
       description: |-
         The landing page provides links to the API definition, the conformance statements and to the feature collections in this dataset.
@@ -138,7 +144,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/f-json'
       tags:
-        - Capabilities
+        - OGC API Common
       responses:
         '200':
           description: |-
@@ -169,7 +175,7 @@ paths:
   '/collections':
     get:
       tags:
-        - Capabilities
+        - OGC API Common
       summary: the collections in the dataset
       operationId: getCollections
       parameters:
@@ -182,7 +188,7 @@ paths:
   '/collections/{collectionId}':
     get:
       tags:
-        - Capabilities
+        - OGC API Common
       summary: describe a collection
       operationId: describeCollection
       parameters:
@@ -205,7 +211,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
     patch:
       tags:
-        - Capabilities
+        - OGC API Common
       summary: |-
         update parts of the style metadata
       description: |-
@@ -374,7 +380,7 @@ paths:
   '/tileMatrixSets':
     get:
       tags:
-        - Capabilities
+        - TileMatrixSet
       summary: fetch all available tile matrix sets (tiling schemes)
       operationId: getTileMatrixSets
       parameters:
@@ -392,7 +398,7 @@ paths:
   '/tileMatrixSets/{tileMatrixSetId}':
     get:
       tags:
-        - Capabilities
+        - TileMatrixSet
       summary: fetch a tile matrix sets (tiling scheme) by id
       operationId: getTileMatrixSetDescription
       parameters:
@@ -502,7 +508,7 @@ paths:
   '/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
-        - Tiles with one layer
+        - Map Tiles with one layer
       summary: fetch a tile from a collection
       description: |-
         Retrieves the tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -546,7 +552,6 @@ paths:
     get:
       tags:
         - Complex Tiles
-        - FeatureInfos
       summary: fetch information about a point in a tile from one or more collections
       description: |-
         Retrieves information about a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -578,7 +583,6 @@ paths:
   '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-        - Tiles with one layer
         - FeatureInfos
       summary: fetch information about a point on a tile from a collection
       description: |-
@@ -610,7 +614,6 @@ paths:
   '/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-        - Tiles with one layer
         - FeatureInfos
       summary: fetch information about a point on a tile from a collection
       description: |-
@@ -656,7 +659,7 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styles'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/scaleDenominator'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileFormat'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/embedded'
         - $ref: '#/components/parameters/f-json-zip'
@@ -681,14 +684,14 @@ paths:
       tags:
         - MultiTiles
       summary: |-
-        fetch tiles of a collection
+        fetch tiles of a collection.
       operationId: getTiles
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/scaleDenominator'        
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileFormat'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/embedded'        
         - $ref: '#/components/parameters/f-json-zip'
@@ -720,7 +723,7 @@ paths:
         # Needs to add the collectionIds and bbox etc as query
         - $ref: '#/components/parameters/f-json'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styles'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
@@ -766,7 +769,7 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
         - $ref: '#/components/parameters/f-json'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
@@ -801,7 +804,6 @@ paths:
     get:
       tags:
         - Complex Maps
-        - FeatureInfos
       summary: fetch information about a point in a map from one or more collections
       description: |-
         Retrieves a getFeatureInfo in map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.        
@@ -809,7 +811,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/f-json-html'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoCollections'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styles'
@@ -839,7 +841,6 @@ paths:
     get:
       tags:
         - Maps with one layer
-        - FeatureInfos
       summary: fetch information about a point on a map from a collection
       description: |-
         Retrieves a getFeatureInfo in map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.        
@@ -849,7 +850,7 @@ paths:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
         - $ref: '#/components/parameters/f-json-html'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
