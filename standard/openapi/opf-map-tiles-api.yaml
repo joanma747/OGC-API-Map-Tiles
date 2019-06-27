@@ -1114,7 +1114,7 @@ paths:
         The collections and the feature properties to include in the tile
         representation can be limited using query parameters.
         The CRS of the bbox is the CRS indicated int he TileMatrixSet definition.
-      operationId: getTilesCollections
+      operationId: getTiles
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styles'
@@ -1140,13 +1140,76 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
-  '/collections/{collectionId}/tiles/{styleId}{tileMatrixSetId}':
+  '/collections/{collectionId}/tiles/{tileMatrixSetId}':
     get:
       tags:
         - MultiTiles
       summary: |-
         fetch tiles of a collection.
-      operationId: getTiles
+      operationId: getTilesCollectionId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/scaleDenominator'        
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileFormat'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/embedded'        
+        - $ref: '#/components/parameters/f-json-zip'
+      responses:
+        '200':
+          description: |-
+            A tiling scheme used to partition the collection into tiles.
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/tileSet'
+            application/x-zip-compressed:
+              schema:
+                type: string
+                format: binary
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'          
+  '/collections/{collectionId}/coverages/{coverageId}/tiles/{tileMatrixSetId}':
+    get:
+      tags:
+        - MultiTiles
+      summary: |-
+        fetch tiles of a collection.
+      operationId: getTilesCoverageId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coverageId'        
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/scaleDenominator'        
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileFormat'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/embedded'        
+        - $ref: '#/components/parameters/f-json-zip'
+      responses:
+        '200':
+          description: |-
+            A tiling scheme used to partition the collection into tiles.
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/tileSet'
+            application/x-zip-compressed:
+              schema:
+                type: string
+                format: binary
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'        
+  '/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}':
+    get:
+      tags:
+        - MultiTiles
+      summary: |-
+        fetch tiles of a collection.
+      operationId: getMapTilesCollectionId
       parameters:
         - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
@@ -1172,6 +1235,39 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'          
+  '/collections/{collectionId}/coverages/{coverageId}/map/{styleId}/tiles/{tileMatrixSetId}':
+    get:
+      tags:
+        - MultiTiles
+      summary: |-
+        fetch tiles of a collection.
+      operationId: getMapTilesCoverageId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coverageId'        
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/scaleDenominator'        
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileFormat'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/embedded'        
+        - $ref: '#/components/parameters/f-json-zip'
+      responses:
+        '200':
+          description: |-
+            A tiling scheme used to partition the collection into tiles.
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/tileSet'
+            application/x-zip-compressed:
+              schema:
+                type: string
+                format: binary
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
 
 components:
   schemas:
