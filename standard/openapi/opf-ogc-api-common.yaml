@@ -329,6 +329,17 @@ components:
             - Polygon
             - MultiPolygon
             - GeometryCollection
+    domainSetJSON:
+      description: TBD
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+    rangeTypeJSON:
+      description: TBD
+      type: object
     boundingBox:
       required:
         - type
