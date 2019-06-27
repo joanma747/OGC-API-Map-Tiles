@@ -667,7 +667,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tiles-set'
+                $ref: '#/components/schemas/tileSet'
             application/x-zip-compressed:
               schema:
                 type: string
@@ -699,7 +699,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tiles-set'
+                $ref: '#/components/schemas/tileSet'
             application/x-zip-compressed:
               schema:
                 type: string
@@ -1033,7 +1033,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: '#/components/schemas/domainSetJSON'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/domainSetJSON'
             text/html:
               schema:
                 type: string
@@ -1076,7 +1076,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: '#/components/schemas/rangeTypeJSON'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/rangeTypeJSON'
             text/html:
               schema:
                 type: string
@@ -1085,7 +1085,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/exception'
+                $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/exception'
             text/html:
               schema:
                 type: string
@@ -1210,15 +1210,15 @@ components:
           minItems: 1
           items:
             $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
-    tiles-set:
+    tileSet:
       description: |-
         This is the response for a multiple tiles request.
       required:
         - type
       type: array
       items:
-        $ref: '#/components/schemas/tiles-entry'
-    tiles-entry:
+        $ref: '#/components/schemas/tileSetEntry'
+    tileSetEntry:
       description: |-
         This is an entry on a multiple tiles request.
       type: object
