@@ -952,14 +952,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
-          content:
-            application/json:
-              schema:
-                $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   /collections/{collectionId}/coverages/{coverageId}:
     get:
       tags:
@@ -995,14 +988,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
-          content:
-            application/json:
-              schema:
-                $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   /collections/{collectionId}/coverages/{coverageId}/domainset:
     get:
       tags:
@@ -1038,14 +1024,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
-          content:
-            application/json:
-              schema:
-                $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   /collections/{collectionId}/coverages/{coverageId}/rangetype:
     get:
       tags:
@@ -1081,14 +1060,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
-          content:
-            application/json:
-              schema:
-                $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
 components:
   schemas:
     {}
