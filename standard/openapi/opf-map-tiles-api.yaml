@@ -14,9 +14,9 @@ servers:
     url: https://virtserver.swaggerhub.com/joanma747/opf-map-tiles-api/1.0.0
 info:
   title: |-
-    OGC API Maps and Tiles (preliminary DRAFT)
+    OGC API Maps and Tiles OpenAPI document example
   description: |-
-    This is a draft of the OGC API maps and tiles produced in the Testbed-15 Open Portrayal Framework in collaboration with the WMS.SWG. The Map Tile API is a Web API for fetching and managing maps and tiles.
+    This is a draft of an example (and imaginary instance) of a service following the OGC API maps and tiles produced in the Testbed-15 Open Portrayal Framework in collaboration with the WMS.SWG. The Map Tile API is a Web API for fetching and managing maps and tiles.
     
     The extensions are the following.
     * There are 
@@ -31,11 +31,11 @@ info:
     expressions for selection criteria in queries on features in the collection.
 
     For more background information see [the Vector Tiles Pilot Extension Engineering 
-    Report](http://docs.opengeospatial.org/per/18-101.html#StylesAPI).
+    Report](https://github.com/opengeospatial/OGC-API-Map-Tiles/tree/master/standard/openapi).
 
   version: "1.0.0"
   contact:
-    name: Jaon Maso
+    name: Joan Maso
     email: joan.maso@uab.cat
   license:
     name: OGC License
@@ -44,15 +44,24 @@ tags:
   - name: Capabilities
     description: |-
       essential characteristics of this API
-  - name: Features
+  - name: OGC API Features
     description: |-
       access to data (features)
-  - name: Tiles
+  - name: OGC API Coverages
     description: |-
-      access to data representations, partitioned into a hierarchy of tiles (renderizations or vector tiles).
-  - name: Maps
+      access to data (coverages)
+  - name: Tiles with one layer
     description: |-
-      access to map renderizations of collections.
+      access to data representations, partitioned into a hierarchy of tiles (renderizations or vector tiles) of layer
+  - name: Maps with one layer
+    description: |-
+      access to map renderizations of a layer.
+  - name: Complex Maps
+    description: |-
+      access to map renderizations of more that one layer.
+  - name: Complex Tiles
+    description: |-
+      access to data representations, partitioned into a hierarchy of tiles (renderizations or vector tiles) of more that one layer.
   - name: FeatureInfos
     description: |-
       access to information about a point in a map or a tile.
@@ -77,7 +86,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/landing-page'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/landing-page'
               example:
                 - href: 'http://data.example.org/?f=json'
                   rel: self
@@ -102,11 +111,11 @@ paths:
                 - href: 'http://data.example.org/collections?f=json'
                   rel: data
                   type: application/json
-                  title: The feature collections in the dataset in JSON
+                  title: The collections in the dataset in JSON
                 - href: 'http://data.example.org/collections?f=html'
                   rel: data
                   type: text/html
-                  title: The feature collections in the dataset in HTML
+                  title: The collections in the dataset in HTML
                 - href: 'http://data.example.org/tileMatrixSet?f=json'
                   rel: tileMatrixSets
                   type: application/json
@@ -119,10 +128,9 @@ paths:
               schema:
                 type: string
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
   '/conformance':
     get:
-      summary: information about specifications that this API conforms to
       description: |-
         A list of all requirements classes specified in a standard that the 
         server conforms to.
@@ -134,12 +142,11 @@ paths:
       responses:
         '200':
           description: |-
-            the URIs of all requirements classes supported by 
-            this API        
+            the URIs of all requirements classes supported by this API        
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/req-classes'
+                $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/req-classes'
               example:
                 - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/core'
                 - 'http://www.opengis.net/spec/ogcapi-features-1/1.0/req/oas30'
@@ -158,7 +165,7 @@ paths:
             The media types accepted by the client are not 
             supported for this resource
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/collections':
     get:
       tags:
@@ -169,9 +176,9 @@ paths:
         - $ref: '#/components/parameters/f-json-html'
       responses:
         '200':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/Collections'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/Collections'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}':
     get:
       tags:
@@ -179,7 +186,7 @@ paths:
       summary: describe a collection
       operationId: describeCollection
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
         - $ref: '#/components/parameters/f-json-html'
       responses:
         '200':
@@ -193,9 +200,9 @@ paths:
               schema:
                 type: string
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
     patch:
       tags:
         - Capabilities
@@ -261,7 +268,7 @@ paths:
       security:
         - BasicAuth: []
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
       requestBody:
         description: |-
           The updated style information for the collection.
@@ -271,14 +278,14 @@ paths:
               $ref: '#/components/schemas/collectionInfo-patch'
       responses:
         '204':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/Updated'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/Updated'
         '400':
           description: |-
             Malformed patch document.
         '401':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/UnauthorizedAccess'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/UnauthorizedAccess'
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '415':
           description: |-
             Unsupported patch document.
@@ -294,24 +301,24 @@ paths:
             to be valid, but the server is incapable of processing 
             the request.
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}/items':
     get:
       tags:
-        - Features
+        - OGC API Features
       summary: retrieve features of the feature collection
       description: |-
         IMPORTANT: This operation is defined by in OGC API features. It is included here for INFORMATION ONLY But is OUT OF SCOPE for Maps and Tiles.
       operationId: getFeatures
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
         - $ref: '#/components/parameters/f-json-html'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/limit'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/offset'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/resultType'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/properties'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/limit'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/offset'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/resultType'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/properties'
         - name: f_code
           in: query
           description: Filter the collection by f_code
@@ -328,27 +335,27 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
             text/html:
               schema:
                 type: string
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}/items/{featureId}':
     get:
       tags:
-        - Features
+        - OGC API Features
       summary: fetch a feature
       description: |-
         IMPORTANT: This operation is defined by in OGC API features. It is included here for INFORMATION ONLY But is OUT OF SCOPE for Maps and Tiles.      
       operationId: getFeature
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/featureId'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/featureId'
         - $ref: '#/components/parameters/f-json-html'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/properties'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/properties'
       responses:
         '200':
           description: |-
@@ -356,15 +363,15 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureGeoJSON'
             text/html:
               schema:
                 type: string
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
-  '/tileMatrixSet':
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+  '/tileMatrixSets':
     get:
       tags:
         - Capabilities
@@ -375,37 +382,37 @@ paths:
       responses:
         '200':
           description: |-
-            A list of tiling schemes.
+            An array of tile matrix sets (tiling schemes).
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/tileMatrixSet'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/tileMatrixSets'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
-  '/tileMatrixSet/{tileMatrixSetId}':
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+  '/tileMatrixSets/{tileMatrixSetId}':
     get:
       tags:
         - Capabilities
-      summary: fetch a tiling scheme by id
+      summary: fetch a tile matrix sets (tiling scheme) by id
       operationId: getTileMatrixSetDescription
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
         - $ref: '#/components/parameters/f-json'
       responses:
         '200':
-          description: A tiling scheme.
+          description: tile matrix sets (a tiling scheme).
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/tileMatrixSet'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/tileMatrixSet'
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
   '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
-        - Tiles
+        - Complex Tiles
       summary: fetch a tile from one or more collections
       description: |-
         The tile in the requested tiling scheme, on the requested zoom level in
@@ -415,13 +422,13 @@ paths:
         representation can be limited using query parameters.
       operationId: getTileCollections
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collections'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
         - $ref: '#/components/parameters/styles'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileCol'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime'        
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileCol'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'        
         - $ref: '#/components/parameters/f-png-jpeg-vector'
       responses:
         '200':
@@ -445,27 +452,26 @@ paths:
                 type: string
             application/geo+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON'          
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'          
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
-  '/collections/{collectionId}/tiles/{styleId}/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+  '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
-        - Tiles
+        - Tiles with one layer
       summary: fetch a tile from a collection
       description: |-
         Retrieves the tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
       operationId: getTileOfCollectionId
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styleId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileCol'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileCol'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'
         - $ref: '#/components/parameters/f-png-jpeg-vector'
       responses:
         '200':
@@ -488,32 +494,75 @@ paths:
                 type: string
             application/geo+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+  '/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
+    get:
+      tags:
+        - Tiles with one layer
+      summary: fetch a tile from a collection
+      description: |-
+        Retrieves the tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
+      operationId: getMapTileOfCollectionId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/styleId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileCol'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'
+        - $ref: '#/components/parameters/f-png-jpeg-vector'
+      responses:
+        '200':
+          description: A tile of the collection.
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/gif:
+              schema:
+                type: string
+                format: binary
+            image/mvt:
+              schema:
+                type: string
+            application/geo+json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
   '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-        - Tiles
+        - Complex Tiles
         - FeatureInfos
       summary: fetch information about a point in a tile from one or more collections
       description: |-
         Retrieves information about a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
       operationId: getFeatureInfoTileOfCollections
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collections'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
         - $ref: '#/components/parameters/styles'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileCol'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileCol'
         - $ref: '#/components/parameters/coord_i'
         - $ref: '#/components/parameters/coord_j'
         - $ref: '#/components/parameters/infoTemplate'
         - $ref: '#/components/parameters/tileFormat'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'
         - $ref: '#/components/parameters/f-json-html'
       responses:
         '200':
@@ -521,32 +570,31 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
-  '/collections/{collectionId}/tiles/[stylesId}/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+  '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-        - Tiles
+        - Tiles with one layer
         - FeatureInfos
       summary: fetch information about a point on a tile from a collection
       description: |-
         Retrieves inforamtion on a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
       operationId: getFeatureInfoTileOfCollectionId
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
-        - $ref: '#/components/parameters/styleId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrix'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileRow'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileCol'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileCol'
         - $ref: '#/components/parameters/coord_i'
         - $ref: '#/components/parameters/coord_j'
         - $ref: '#/components/parameters/infoTemplate'
         - $ref: '#/components/parameters/tileFormat'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'
         - $ref: '#/components/parameters/f-json-html'
       responses:
         '200':
@@ -554,11 +602,44 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+  '/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
+    get:
+      tags:
+        - Tiles with one layer
+        - FeatureInfos
+      summary: fetch information about a point on a tile from a collection
+      description: |-
+        Retrieves inforamtion on a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
+      operationId: getFeatureInfoMapTileOfCollectionId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/styleId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileCol'
+        - $ref: '#/components/parameters/coord_i'
+        - $ref: '#/components/parameters/coord_j'
+        - $ref: '#/components/parameters/infoTemplate'
+        - $ref: '#/components/parameters/tileFormat'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'
+        - $ref: '#/components/parameters/f-json-html'
+      responses:
+        '200':
+          description: A getFeatureInfo of a tile of the collection.
+          content:
+            application/geo+json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
   '/tiles/{tileMatrixSetId}':
     get:
       tags:
@@ -571,11 +652,11 @@ paths:
         The CRS of the bbox is the CRS indicated int he TileMatrixSet definition.
       operationId: getTilesCollections
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collections'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
         - $ref: '#/components/parameters/styles'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
-        - $ref: '#/components/parameters/scaleDenRange'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: '#/components/parameters/scaleDenominator'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
         - $ref: '#/components/parameters/tileFormat'
         - $ref: '#/components/parameters/embedded'
         - $ref: '#/components/parameters/f-json-zip'
@@ -592,9 +673,9 @@ paths:
                 type: string
                 format: binary
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}/tiles/{styleId}{tileMatrixSetId}':
     get:
       tags:
@@ -603,11 +684,11 @@ paths:
         fetch tiles of a collection
       operationId: getTiles
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
         - $ref: '#/components/parameters/styleId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/tileMatrixSetId'
-        - $ref: '#/components/parameters/scaleDenRange'        
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: '#/components/parameters/scaleDenominator'        
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
         - $ref: '#/components/parameters/tileFormat'
         - $ref: '#/components/parameters/embedded'        
         - $ref: '#/components/parameters/f-json-zip'
@@ -624,13 +705,13 @@ paths:
                 type: string
                 format: binary
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'          
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'          
   '/map':
     get:
       tags:
-        - Maps
+        - Complex Maps
       summary: fetch a map from one or more collections
       description: |-
         Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -639,14 +720,14 @@ paths:
         # Needs to add the collectionIds and bbox etc as query
         - $ref: '#/components/parameters/f-json'
         - $ref: '#/components/parameters/map-crs'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collections'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
         - $ref: '#/components/parameters/styles'
         - $ref: '#/components/parameters/width'
         - $ref: '#/components/parameters/height'
         - $ref: '#/components/parameters/transparent'
         - $ref: '#/components/parameters/bgcolor'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'
         - $ref: '#/components/parameters/elevation'
       responses:
         '200':
@@ -667,30 +748,30 @@ paths:
                 format: binary
             application/geo+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}/map/{styleId}':
     get:
       tags:
-        - Maps
+        - Maps with one layer
       summary: fetch a map from a collection
       description: |-
         Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.        
       operationId: getMapCollectionId
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
         - $ref: '#/components/parameters/styleId'
         - $ref: '#/components/parameters/f-json'
         - $ref: '#/components/parameters/map-crs'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
         - $ref: '#/components/parameters/width'
         - $ref: '#/components/parameters/height'
         - $ref: '#/components/parameters/transparent'
         - $ref: '#/components/parameters/bgcolor'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime'      
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'      
         - $ref: '#/components/parameters/elevation'
       responses:
         '200':
@@ -711,15 +792,15 @@ paths:
                 format: binary
             application/geo+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
   '/map/info':
     get:
       tags:
-        - Maps
+        - Complex Maps
         - FeatureInfos
       summary: fetch information about a point in a map from one or more collections
       description: |-
@@ -728,14 +809,15 @@ paths:
       parameters:
         - $ref: '#/components/parameters/f-json-html'
         - $ref: '#/components/parameters/map-crs'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collections'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoCollections'
         - $ref: '#/components/parameters/styles'
         - $ref: '#/components/parameters/width'
         - $ref: '#/components/parameters/height'
         - $ref: '#/components/parameters/transparent'
         - $ref: '#/components/parameters/bgcolor'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime'      
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'      
         - $ref: '#/components/parameters/elevation'
         - $ref: '#/components/parameters/coord_i'
         - $ref: '#/components/parameters/coord_j'
@@ -748,31 +830,31 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'          
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'          
   '/collections/{collectionId}/map/{styleId}/info':
     get:
       tags:
-        - Maps
+        - Maps with one layer
         - FeatureInfos
       summary: fetch information about a point on a map from a collection
       description: |-
         Retrieves a getFeatureInfo in map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.        
       operationId: getFeatureInfoCollectionId
       parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
         - $ref: '#/components/parameters/styleId'
         - $ref: '#/components/parameters/f-json-html'
         - $ref: '#/components/parameters/map-crs'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bbox'
         - $ref: '#/components/parameters/width'
         - $ref: '#/components/parameters/height'
         - $ref: '#/components/parameters/transparent'
         - $ref: '#/components/parameters/bgcolor'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/parameters/datetime'      
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/datetime'      
         - $ref: '#/components/parameters/elevation'
         - $ref: '#/components/parameters/coord_i'
         - $ref: '#/components/parameters/coord_j'
@@ -785,20 +867,237 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
         '404':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/NotFound'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+  /collections/{collectionId}/coverages:
+    get:
+      tags:
+      - OGC API Coverages
+      summary: retrieve coverages of the collection {collectionId}
+      description: |-
+        Every coverage to a collection.
+        Use content negotiation to request HTML or GeoJSON.
+      operationId: getCoverages
+      parameters:
+      - name: collectionId
+        in: path
+        description: Identifier (name) of a specific collection
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: |
+          The optional limit parameter limits the number of items that are
+          presented in the response document.
+
+          Only items are counted that are on the first level of the collection in
+          the response document. Nested objects contained within the explicitly
+          requested items shall not be counted.
+
+          * Minimum = 1
+          * Maximum = 10000
+          * Default = 10
+        required: false
+        style: form
+        explode: false
+        schema:
+          maximum: 10000
+          minimum: 1
+          type: integer
+          default: 10
+      - name: bbox
+        in: query
+        description: |
+          Only features that have a geometry that intersects the bounding box are selected. The bounding box is provided as four or six numbers, depending on whether the coordinate reference system includes a vertical axis (elevation or depth):
+          * Lower left corner, coordinate axis 1 * Lower left corner, coordinate axis 2 * Lower left corner, coordinate axis 3 (optional) * Upper right corner, coordinate axis 1 * Upper right corner, coordinate axis 2 * Upper right corner, coordinate axis 3 (optional)
+          The coordinate reference system of the values is WGS84 longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different coordinate reference system is specified in the parameter `bbox-crs`.
+          For WGS84 longitude/latitude the values are in most cases the sequence of minimum longitude, minimum latitude, maximum longitude and maximum latitude. However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
+          If a feature has multiple spatial geometry properties, it is the decision of the server whether only a single spatial geometry property is used to determine the extent or all relevant geometries.
+        required: false
+        style: form
+        explode: false
+        schema:
+          maxItems: 6
+          minItems: 4
+          type: array
+          items:
+            type: number
+      - name: time
+        in: query
+        description: |-
+          Either a date-time or a period string that adheres to RFC 3339. Examples:
+          * A date-time: "2018-02-12T23:20:50Z" * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or "2018-02-12T00:00:00Z/P1M6DT12H31M12S"
+          Only features that have a temporal property that intersects the value of `time` are selected.
+          If a feature has multiple temporal properties, it is the decision of the server whether only a single temporal property is used to determine the extent or all relevant temporal properties.
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: Information about the feature collection plus the first features
+            matching the selection parameters.
+          content:
+            application/geo+json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occured.
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+  /collections/{collectionId}/coverages/{coverageId}:
+    get:
+      tags:
+      - OGC API Coverages
+      summary: retrieve a coverage; use content negotiation to request either a multipart
+        response or the coverages rangeType in the specified format
+      operationId: getCoverage
+      parameters:
+      - name: collectionId
+        in: path
+        description: Identifier (name) of a specific collection
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: coverageId
+        in: path
+        description: Local identifier of a specific coverage
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: A coverage.
+          content:
+            application/multipart+related:
+              schema:
+                $ref: '#/components/schemas/featureGeoJSON'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occured.
+          content:
+            application/json:
+              schema:
+                $ref: ''https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+  /collections/{collectionId}/coverages/{coverageId}/domainset:
+    get:
+      tags:
+      - OGC API Coverages
+      summary: retrieve a coverages domainset; use content negotiation to request
+        HTML or GeoJSON
+      operationId: getCoverageDomainSet
+      parameters:
+      - name: collectionId
+        in: path
+        description: Identifier (name) of a specific collection
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: coverageId
+        in: path
+        description: Local identifier of a specific coverage
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: A coverages domainset.
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/domainSetJSON'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occured.
+          content:
+            application/json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+  /collections/{collectionId}/coverages/{coverageId}/rangetype:
+    get:
+      tags:
+      - OGC API Coverages
+      summary: retrieve a coverages rangetype; use content negotiation to request
+        HTML or GeoJSON
+      operationId: getCoverageRangeType
+      parameters:
+      - name: collectionId
+        in: path
+        description: Identifier (name) of a specific collection
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: coverageId
+        in: path
+        description: Local identifier of a specific coverage
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        200:
+          description: A coverages rangetype.
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/rangeTypeJSON'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
 components:
   schemas:
     collectionInfo:
       allOf:
-      - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/collectionInfo'
+      - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/collectionInfo'
       - type: object
         properties:
           styles:
-            $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/style-set'
+            $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/style-set'
           mapCRSSetLink: 
             $ref: '#/components/schemas/mapCRSSetLink'
           tileMatrixSetLink:
@@ -812,7 +1111,7 @@ components:
       type: object
       properties:
         styles:
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/style-set'
+          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/style-set'
         defaultStyle:
           type: string
           nullable: true
@@ -848,7 +1147,7 @@ components:
           nullable: true
           minItems: 1
           items:
-            $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
         tileMatrixSetLimits:
           type: array
           nullable: true
@@ -872,7 +1171,7 @@ components:
           nullable: true
           minItems: 0
           items:
-            $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
         tileMatrixSetLimits:
           type: array
           nullable: true
@@ -910,10 +1209,10 @@ components:
           nullable: false
           minItems: 1
           items:
-            $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api/1.0.0#/components/schemas/link'
+            $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/link'
     tiles-set:
       description: |-
-        This is the response of a multiple tiles request.
+        This is the response for a multiple tiles request.
       required:
         - type
       type: array
@@ -945,12 +1244,12 @@ components:
         width:
           type: number
           description: |-
-            The width of the tile in randering device pixels. If it excedes the visual display area be should cut when displayed
+            The width of the tile in rendering device pixels. If it exceeds the visual display area be should cut when displayed
           nullable: true
         height:
           type: number
           description: |-
-            The height of the tile in randering device pixels. If it excedes the visual display area be should cut when displayed
+            The height of the tile in rendering device pixels. If it exceeds the visual display area be should cut when displayed
           nullable: true
         top:
           type: number
@@ -1030,7 +1329,7 @@ components:
       schema:
         type: string
         enum:
-          - pgn
+          - png
           - jpeg
           - gif
           - mvt
@@ -1079,7 +1378,7 @@ components:
       name: i
       in: query
       description: |-
-        Height in pixels of map picture.
+        Horizontal (x) coordinate within a map or tile.
       required: true
       style: form
       explode: false
@@ -1089,17 +1388,17 @@ components:
       name: j
       in: query
       description: |-
-        Height in pixels of map picture.
+        Vertical (y) coordinate within a map or tile.
       required: true
       style: form
       explode: false
       schema:
         type: number        
-    scaleDenRange:
-      name: scaleDenRange
+    scaleDenominator:
+      name: scaleDenominator
       in: query
       description: |-
-        A ange of scale denominators (that canb e used to deduce a list of tileMatrix names). Please consider that scale denominators have several significant digits. To prevent mistakes apply tolerances to intervals. Even if you want to specify a single scale denominator use an interval with tolerance
+         A range of scale denominators (that can be used to generate a list of tileMatrix names. Note that scale denominators have several significant digits. To prevent mistakes apply tolerances to intervals. Even if you want to specify a single scale denominator use an interval with tolerance
       required: false
       style: form
       explode: false
@@ -1113,7 +1412,7 @@ components:
       name: infoTemplate
       in: query
       description: |-
-        template used for showing the info. This parameter can be used to select among GML application schemas or JSON shemas and provide alternative presentations for the same info
+        template used for the information response. This parameter can be used to select among GML application schemas or JSON schemas and provide alternative presentations for the same information
       required: false
       style: form
       explode: false
@@ -1153,8 +1452,8 @@ components:
       name: crs
       in: query
       description: |-
-        CRSId used to rended the map. It is also the CRS of the bbox parameter.
-        You can only ask for CRSs that are valid of the collectionId.
+        CRSId used to render the map. It is also the CRS of the bbox parameter.
+        You can only ask for CRSs that are valid for the collectionId.
       required: false
       style: form
       explode: false
@@ -1174,7 +1473,7 @@ components:
       name: tileFormat
       in: query
       description: |-
-        Internal format of the multi- tiles referenced or embedded of for the info request on a tile
+        Internal format of the multi-tiles referenced or embedded for the info request on a tile
       required: false
       style: form
       schema:
