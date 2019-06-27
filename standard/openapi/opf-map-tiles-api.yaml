@@ -1065,6 +1065,27 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
+    post:
+      tags:
+        - Complex Maps
+      summary: fetch a map from one or more collections
+      description: |-
+        Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
+      operationId: addMapCollections
+      responses:
+        '201':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/Created'
+        '400':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/Invalid'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/response/UnauthorizedAccess'
+        '409':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/response/AlreadyExist'
+      requestBody:
+        description: |-
+          descriptions of the map an style in a SDL-SE encoding
+        content:
+          application/se+json:
 
   '/map/{mapId}':
     get:
