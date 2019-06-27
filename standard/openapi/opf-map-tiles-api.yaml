@@ -278,12 +278,12 @@ paths:
               $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/collectionInfo-patch'
       responses:
         '204':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/Updated'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/Updated'
         '400':
           description: |-
             Malformed patch document.
         '401':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/UnauthorizedAccess'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/UnauthorizedAccess'
         '404':
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
         '415':
