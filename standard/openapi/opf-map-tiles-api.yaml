@@ -176,9 +176,9 @@ paths:
         - $ref: '#/components/parameters/f-json-html'
       responses:
         '200':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/Collections'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/Collections'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}':
     get:
       tags:
