@@ -65,6 +65,9 @@ tags:
   - name: Complex Maps
     description: |-
       access to map renderizations of more that one layer.
+  - name: Manage Complex Maps
+    description: |-
+      manage to map renderizations of more that one layer.  
   - name: Complex Tiles
     description: |-
       access to data representations, partitioned into a hierarchy of tiles (renderizations or vector tiles) of more that one layer.
@@ -1067,7 +1070,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
     post:
       tags:
-        - Complex Maps
+        - Manage Complex Maps
       summary: fetch a map from one or more collections
       description: |-
         Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -1136,7 +1139,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
     put:
       tags:
-        - Manage maps
+        - Manage Complex Maps
       summary: |-
         replace a map or add a new one
       description: |-
@@ -1163,7 +1166,7 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/response/UnauthorizedAccess'
     delete:
       tags:
-        - Manage images
+        - Manage Complex Maps
       summary: |-
         delete a symbol resource
       description: |-
