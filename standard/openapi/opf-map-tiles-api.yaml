@@ -1090,7 +1090,8 @@ paths:
         content:
           application/se+json:
             schema:
-              type: string
+            schema:
+              $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/simbologyEncoding'
   '/map/{mapId}':
     get:
       tags:
@@ -1156,9 +1157,9 @@ paths:
         description: |-
           A single symbol or sprite resource.
         content:
-          application/stac.item+json:
+          application/se+json:
             schema:
-              $ref: '#/components/schemas/stacItem'      
+              $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/simbologyEncoding'
       responses:
         '204':
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/response/Updated'
