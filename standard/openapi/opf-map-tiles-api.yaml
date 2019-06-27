@@ -1090,7 +1090,6 @@ paths:
         content:
           application/se+json:
             schema:
-            schema:
               $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/simbologyEncoding'
   '/map/{mapId}':
     get:
