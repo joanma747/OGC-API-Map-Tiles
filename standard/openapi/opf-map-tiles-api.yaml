@@ -86,7 +86,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/landing-page'
+                $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/landing-page'
               example:
                 - href: 'http://data.example.org/?f=json'
                   rel: self
