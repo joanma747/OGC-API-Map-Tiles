@@ -1027,9 +1027,56 @@ paths:
       summary: fetch a map from one or more collections
       description: |-
         Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
+      operationId: enumerateMapCollections
+      parameters:
+        # Needs to add the collectionIds and bbox etc as query
+        - $ref: '#/components/parameters/f-json'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/collections'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styles'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/datetime'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+      responses:
+        '200':
+          description: |- 
+            Retrieves a map that renders objects of one or more collections in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/gif:
+              schema:
+                type: string
+                format: binary
+            application/geo+json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
+
+  '/map/{mapId}':
+    get:
+      tags:
+        - Complex Maps
+      summary: fetch a map from one or more collections
+      description: |-
+        Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.
       operationId: getMapCollections
       parameters:
         # Needs to add the collectionIds and bbox etc as query
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/mapId'
         - $ref: '#/components/parameters/f-json'
         - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
         - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
