@@ -507,6 +507,157 @@ paths:
         default:
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
 
+
+  '/collections/{collectionId}/map/{styleId}':
+    get:
+      tags:
+        - Maps with one layer
+      summary: fetch a map from a collection
+      description: |-
+        Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.        
+      operationId: getMapCollectionId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
+        - $ref: '#/components/parameters/f-json'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/datetime'      
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+      responses:
+        '200':
+          description: |- 
+            Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/gif:
+              schema:
+                type: string
+                format: binary
+            application/geo+json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
+  '/collections/{collectionId}/map/{styleId}/info':
+    get:
+      tags:
+        - Maps with one layer
+      summary: fetch information about a point on a map from a collection
+      description: |-
+        Retrieves a getFeatureInfo in map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.        
+      operationId: getFeatureInfoCollectionId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
+        - $ref: '#/components/parameters/f-json-html'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/datetime'      
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_i'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_j'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoTemplate'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/mapFormat'
+      responses:
+        '200':
+          description: |- 
+            Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
+          content:
+            application/geo+json:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
+        '500':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'          
+
+  /collections/{collectionId}/coverages/{coverageId}/map/{styleId}:
+    get:
+      tags:
+      - Maps with one layer
+      summary: retrieve a coverage; use content negotiation to request either a multipart
+        response or the coverages rangeType in the specified format
+      operationId: getMapCoverageId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coverageId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
+        - $ref: '#/components/parameters/f-json-html'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/datetime'      
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+      responses:
+        200:
+          description: A coverage.
+          content:
+            application/multipart+related:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureGeoJSON'
+            text/html:
+              schema:
+                type: string
+        default:
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
+  /collections/{collectionId}/coverages/{coverageId}/map/{styleId}/info:
+    get:
+      tags:
+      - Maps with one layer
+      summary: retrieve a coverage; use content negotiation to request either a multipart
+        response or the coverages rangeType in the specified format
+      operationId: getFeatureInfoCoverageId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coverageId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
+        - $ref: '#/components/parameters/f-json-html'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/datetime'      
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_i'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_j'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoTemplate'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/mapFormat'        
+      responses:
+        200:
+          description: A coverage.
+          content:
+            application/multipart+related:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureGeoJSON'
+            text/html:
+              schema:
+                type: string
+        default:
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
+
   '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
@@ -740,6 +891,72 @@ paths:
         '500':
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
 
+  '/collections/{collectionId}/coverages/{coverageId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
+    get:
+      tags:
+      - Map Tiles with one layer
+      summary: retrieve a coverage; use content negotiation to request either a multipart
+        response or the coverages rangeType in the specified format
+      operationId: getMapTileCoverageId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coverageId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
+        - $ref: '#/components/parameters/f-json-html'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/datetime'      
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileCol'
+      
+      responses:
+        200:
+          description: A coverage.
+          content:
+            application/multipart+related:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureGeoJSON'
+            text/html:
+              schema:
+                type: string
+        default:
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
+  '/collections/{collectionId}/coverages/{coverageId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
+    get:
+      tags:
+      - Map Tiles with one layer
+      summary: retrieve a coverage; use content negotiation to request either a multipart
+        response or the coverages rangeType in the specified format
+      operationId: getFeatureInfoTileCoverageId
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coverageId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
+        - $ref: '#/components/parameters/f-json-html'
+        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/datetime'      
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrixSetId'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileMatrix'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileRow'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/tileCol'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_i'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_j'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoTemplate'
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/mapFormat'        
+      responses:
+        200:
+          description: A coverage.
+          content:
+            application/multipart+related:
+              schema:
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureGeoJSON'
+            text/html:
+              schema:
+                type: string
+        default:
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
+
   '/map':
     get:
       tags:
@@ -893,155 +1110,6 @@ paths:
         '500':
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'          
 
-  '/collections/{collectionId}/map/{styleId}':
-    get:
-      tags:
-        - Maps with one layer
-      summary: fetch a map from a collection
-      description: |-
-        Retrieves a map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.        
-      operationId: getMapCollectionId
-      parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
-        - $ref: '#/components/parameters/f-json'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/datetime'      
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
-      responses:
-        '200':
-          description: |- 
-            Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
-          content:
-            image/jpeg:
-              schema:
-                type: string
-                format: binary
-            image/png:
-              schema:
-                type: string
-                format: binary
-            image/gif:
-              schema:
-                type: string
-                format: binary
-            application/geo+json:
-              schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
-        '404':
-          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
-        '500':
-          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
-  '/collections/{collectionId}/map/{styleId}/info':
-    get:
-      tags:
-        - Maps with one layer
-      summary: fetch information about a point on a map from a collection
-      description: |-
-        Retrieves a getFeatureInfo in map in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height. Some formats require to apply a style in the server side (e.g. png, jpeg, gif) and some others might include a reference to a style to be applied in the client side. The feature properties to include in the tile representation can be limited using a query parameter.        
-      operationId: getFeatureInfoCollectionId
-      parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
-        - $ref: '#/components/parameters/f-json-html'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/datetime'      
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_i'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_j'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoTemplate'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/mapFormat'
-      responses:
-        '200':
-          description: |- 
-            Retrieves a map that renders objects of the collectionId in the requested crs, on the requested bbox desigend to be shown in a rendering device of a width and a height.
-          content:
-            application/geo+json:
-              schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureCollectionGeoJSON'
-        '404':
-          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
-        '500':
-          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'          
-
-  /collections/{collectionId}/coverages/{coverageId}/map/{styleId}:
-    get:
-      tags:
-      - Maps with one layer
-      summary: retrieve a coverage; use content negotiation to request either a multipart
-        response or the coverages rangeType in the specified format
-      operationId: getMapCoverageId
-      parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coverageId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
-        - $ref: '#/components/parameters/f-json-html'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/datetime'      
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
-      responses:
-        200:
-          description: A coverage.
-          content:
-            application/multipart+related:
-              schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureGeoJSON'
-            text/html:
-              schema:
-                type: string
-        default:
-          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
-  /collections/{collectionId}/coverages/{coverageId}/map/{styleId}/info:
-    get:
-      tags:
-      - Maps with one layer
-      summary: retrieve a coverage; use content negotiation to request either a multipart
-        response or the coverages rangeType in the specified format
-      operationId: getFeatureInfoCoverageId
-      parameters:
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/collectionId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coverageId'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/styleId'
-        - $ref: '#/components/parameters/f-json-html'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/map-crs'
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/bbox'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/width'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/height'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/transparent'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/bgcolor'
-        - $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/parameters/datetime'      
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/elevation'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_i'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/coord_j'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/infoTemplate'
-        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/mapFormat'        
-      responses:
-        200:
-          description: A coverage.
-          content:
-            application/multipart+related:
-              schema:
-                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureGeoJSON'
-            text/html:
-              schema:
-                type: string
-        default:
-          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
 components:
   schemas:
     {}
