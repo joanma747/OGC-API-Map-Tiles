@@ -68,9 +68,6 @@ tags:
   - name: Complex Tiles
     description: |-
       access to data representations, partitioned into a hierarchy of tiles (renderizations or vector tiles) of more that one layer.
-  - name: FeatureInfos
-    description: |-
-      access to information about a point in a map or a tile.
   - name: MultiTiles
     description: |-
       access to information about retriving multiple tiles in a single request.
@@ -583,7 +580,7 @@ paths:
   '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-        - FeatureInfos
+        - Tiles with one layer
       summary: fetch information about a point on a tile from a collection
       description: |-
         Retrieves inforamtion on a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
@@ -614,7 +611,7 @@ paths:
   '/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
-        - FeatureInfos
+        - Map Tiles with one layer
       summary: fetch information about a point on a tile from a collection
       description: |-
         Retrieves inforamtion on a point of a tile in the requested tileMatrixSet, on the requested tileMatrix in the TileMatrixSet, with the requested tile indices (tileRow, tileCol). The tile has a single collection (formerly refered as layer) with all selected features in the bounding box of the tile. The feature properties to include in the tile representation can be limited using a query parameter.
