@@ -1134,7 +1134,54 @@ paths:
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/NotFound'
         '500':
           $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
-          
+    put:
+      tags:
+        - Manage maps
+      summary: |-
+        replace a map or add a new one
+      description: |-
+        Replace an existing image with the id `imageId`. If no such image exists, a new resource with that id is added.
+        The resource will only by available in the native format in which the resource is posted. There is no support for         automated conversions to other representations.
+
+        This operation is only available to registered image authors.
+      operationId: updateMap
+      security:
+        - BasicAuth: []
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/mapId'
+      requestBody:
+        description: |-
+          A single symbol or sprite resource.
+        content:
+          application/stac.item+json:
+            schema:
+              $ref: '#/components/schemas/stacItem'      
+      responses:
+        '204':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/response/Updated'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/response/UnauthorizedAccess'
+    delete:
+      tags:
+        - Manage images
+      summary: |-
+        delete a symbol resource
+      description: |-
+        Delete an existing image with the id `resourceId`. If no 
+        such resource exists, an error is returned.
+        This operation is only available to registered image authors.
+      operationId: deleteImage
+      security:
+        - BasicAuth: []
+      parameters:
+        - $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/parameters/mapId'
+      responses:
+        '204':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/response/Deleted'
+        '401':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/response/UnauthorizedAccess'
+        '404':
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/response/NotFound'
   '/map/{mapId}/info':
     get:
       tags:
