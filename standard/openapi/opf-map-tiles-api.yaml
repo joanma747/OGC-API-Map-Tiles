@@ -128,7 +128,7 @@ paths:
               schema:
                 type: string
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/conformance':
     get:
       description: |-
@@ -202,7 +202,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
     patch:
       tags:
         - Capabilities
@@ -301,7 +301,7 @@ paths:
             to be valid, but the server is incapable of processing 
             the request.
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}/items':
     get:
       tags:
@@ -342,7 +342,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}/items/{featureId}':
     get:
       tags:
@@ -370,7 +370,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/tileMatrixSets':
     get:
       tags:
@@ -388,7 +388,7 @@ paths:
               schema:
                 $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/tileMatrixSets'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/tileMatrixSets/{tileMatrixSetId}':
     get:
       tags:
@@ -408,7 +408,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
@@ -456,7 +456,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
@@ -498,7 +498,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}':
     get:
       tags:
@@ -541,7 +541,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
@@ -574,7 +574,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
@@ -606,7 +606,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}/map/{styleId}/tiles/{tileMatrixSetId}/{tileMatrix}/{tileRow}/{tileCol}/info':
     get:
       tags:
@@ -639,7 +639,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/tiles/{tileMatrixSetId}':
     get:
       tags:
@@ -675,7 +675,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}/tiles/{styleId}{tileMatrixSetId}':
     get:
       tags:
@@ -707,7 +707,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'          
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'          
   '/map':
     get:
       tags:
@@ -752,7 +752,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/collections/{collectionId}/map/{styleId}':
     get:
       tags:
@@ -796,7 +796,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   '/map/info':
     get:
       tags:
@@ -834,7 +834,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'          
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'          
   '/collections/{collectionId}/map/{styleId}/info':
     get:
       tags:
@@ -871,7 +871,7 @@ paths:
         '404':
           $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/NotFound'
         '500':
-          $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/responses/ServerError'
+          $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/responses/ServerError'
   /collections/{collectionId}/coverages:
     get:
       tags:
