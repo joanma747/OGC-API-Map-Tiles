@@ -990,7 +990,7 @@ paths:
           content:
             application/multipart+related:
               schema:
-                $ref: '#/components/schemas/featureGeoJSON'
+                $ref: 'https://api.swaggerhub.com/domains/joanma747/ogc-api-map-tiles/1.0.0#/components/schemas/featureGeoJSON'
             text/html:
               schema:
                 type: string
@@ -999,7 +999,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ''https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/exception'
+                $ref: 'https://api.swaggerhub.com/domains/OWSCommon/ogc-api-common/1.0.0#/components/schemas/exception'
             text/html:
               schema:
                 type: string
